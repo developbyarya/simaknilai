@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    SIMAK NILAI - Home
+{% endblock title %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center">Selamat Datang</h2>
+    <h3>Cek Data Sekolah</h3>
+    <p>Pilih sekolah</p>
+    <form action="{% url 'ringkasan' %}" method="post">
+        {% csrf_token %}
+        
+        
+        <div class="input-group mb-3 w-50">
+            <select name="sekolah" id="pilihsekolah" class="form-select" aria-label="Default select example">
+            {% for s in sekolah %}
+                <option value="{{s.sekolah_id}}">{{s.nama}}</option>
+            {% endfor %}
+            </select>
+            <button type="submit" class="btn btn-primary">Cek</button>
+        </div>
+    </form>
+</div>
+
+<script src="{% static 'home.js' %}"></script>
+{% endblock content %}

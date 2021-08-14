@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Data Sekolah
+{% endblock title %}
+
+{% block content %}
+<div class="container pt-5 d-flex align-items-center flex-column w-100">
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="input-group mb-3 w-100">
+                <select name="sekolah" id="pilihsekolah" class="form-select" aria-label="Default select example">
+                {% for s in sekolah %}
+                    <option value="{{s.sekolah_id}}" {% if s.sekolah_id == id %}selected{% endif %}>{{s.nama}}</option>
+                {% endfor %}
+                </select>
+                <button type="submit" class="btn btn-primary">Cek</button>
+        </div>
+    </form>
+    <h2>Data {{sma}}</h2>
+
+    <canvas id="chart" class="mt-5 w-75"></canvas>
+
+    <table class="table mt-5 w-75 table-bordered">
+        <thead>
+            <tr>
+                <th rowspan="2">Tahun</th>
+                <th colspan="3">Zonasi</th>
+                <th colspan="3">Semua</th>
+            </tr>
+            <tr>
+                <th>Tertinggi</th>
+                <th>terendah</th>
+                <th>rata-rata</th>
+                <th>Tertinggi</th>
+                <th>terendah</th>
+                <th>rata-rata</th>
+            </tr>
+        </thead>
+        <tbody id="table-body">
+        
+        </tbody>
+    </table>
+
+</div>
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.0/dist/chart.min.js"></script>
+<script src="{% static 'ringkasan.js' %}">
+
+</script>
+
+{% endblock content %}
